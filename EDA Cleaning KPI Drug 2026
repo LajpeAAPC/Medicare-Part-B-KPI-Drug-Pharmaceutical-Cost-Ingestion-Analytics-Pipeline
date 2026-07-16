@@ -1,0 +1,33 @@
+# Of 32 messy healthcare files, selected number 18 "Drugs other than Chemotherapy".
+
+import os
+import sqlite3
+import pandas as pd
+
+# 1. Path to your specific drug file
+file_path = r"C:\Users\Lajpe\Downloads\extracted_medicare\National\Y2024_18) Drugs other than Chemotherapy (J0000 - J8499).xlsx"
+
+print(f"Reading file: {os.path.basename(file_path)}")
+
+# 2. Load into Pandas
+df = pd.read_excel(file_path)
+
+# 3. Clean column names to lowercase with underscores for strict SQL formatting
+df.columns = (
+    df.columns.str.strip()
+    .str.replace(" ", "_")
+    .str.replace("[^a-zA-Z0-9_]", "", regex=True)
+    .str.lower()
+)
+
+# 4. Write directly to SQLite
+db_path = "medicare_part_b.db"
+conn = sqlite3.connect(db_path)
+df.to_sql("j_code_drugs_2024", conn, if_exists="replace", index=False)
+conn.close()
+
+# 5. Export an optimized CSV flat file for your Tableau Dashboard
+df.to_csv("clean_j_code_drugs_2024.csv", index=False)
+
+print(f"\n✅ Success! Database and Tableau CSV extracts created using columns:")
+print(list(df.columns))
