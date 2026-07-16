@@ -216,3 +216,23 @@ top_10_df
 8	J3245	DRUGS OTHER THAN CHEMOTHERAPY	2646312	2.826694e+08	3.614782e+08
 9	J0585	DRUGS OTHER THAN CHEMOTHERAPY	57247486	2.766644e+08	3.618217e+08
 
+import os
+
+# 1. Get the absolute path of where your notebook is running
+current_folder = os.getcwd()
+file_name = "clean_j_code_drugs_2024.csv"
+full_path = os.path.join(current_folder, file_name)
+
+# 2. Export your cleaned dataframe to that exact spot
+df_cleaned.to_csv(full_path, index=False)
+
+print("--- FILE SAVED SUCCESSFULLY ---")
+print(f"Filename: {file_name}")
+print(f"EXACT FOLDER LOCATION: {current_folder}")
+print("\n👉 Open Tableau, choose 'Text file', and paste or browse to the folder location above!")
+
+--- FILE SAVED SUCCESSFULLY ---
+Filename: clean_j_code_drugs_2024.csv
+EXACT FOLDER LOCATION: C:\Users\Lajpe
+
+👉 Open Tableau, choose 'Text file', and paste or browse to the folder location above!
