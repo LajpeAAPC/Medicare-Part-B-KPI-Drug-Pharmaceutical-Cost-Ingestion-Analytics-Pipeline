@@ -57,3 +57,33 @@ unique	5	710	3	527	577	576
 top	DRUGS OTHER THAN CHEMOTHERAPY	J2150		16	0	0
 freq	1418	2	709	4	262	266
 
+#Your df.describe() output shows that your Excel file actually contains metadata and blank rows at the very top, 
+#which caused Pandas to read the data incorrectly.
+#Because the first row of your file contains the text cpt_only_copyright_2024_american_medical_association_all_rights_reserved 
+#instead of your real column names, Pandas named your columns unnamed_1, unnamed_2, etc., and 
+#treated your real numerical data as text.
+#To fix this step alone, you need to use skiprows to clear the garbage rows at the top so your numerical filters actually work.
+
+#Run this quick snippet to see exactly which line your real column headers (DESCRIPTION, HCPCS, etc.) are on:
+for i, row in enumerate(pd.read_excel(file_path, nrows=10).values):
+    print(f"Row {i}: {list(row)}")
+
+Row 0: [nan, nan, nan, nan, nan, nan]
+Row 1: ['2024 Part B National Summary Data File \nCode Range: 18) Drugs other than Chemotherapy (J0000 - J8499)', nan, nan, nan, nan, nan]
+Row 2: ['This data table begins with column headers on row 5 and data cells are A-6 through F-1423', nan, nan, nan, nan, nan]
+Row 3: ['DESCRIPTION', 'HCPCS', 'MODIFIER', 'ALLOWED SERVICES', 'ALLOWED CHARGES', 'PAYMENT']
+Row 4: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0120', ' ', 26, 24.7, 19.24]
+Row 5: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0120', 'TOTAL', 26, 24.7, 19.24]
+Row 6: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0121', ' ', 858861, 3245162.67, 2542465.53]
+Row 7: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0121', 'TOTAL', 858861, 3245162.67, 2542465.53]
+Row 8: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0122', ' ', 61630, 71141.22, 55734.07]
+Row 9: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0122', 'TOTAL', 61630, 71141.22, 55734.07]
+
+#Look at Row 2: the file explicitly tells you that the true headers are on line 5 of the Excel sheet, 
+#which corresponds to Row 3 (index 3) in Python's zero-indexed tracking.Because your 
+#true headers sit squarely at index 3, you must use header=3 when reading the file.
+
+#looking closely at your data rows, we can spot a huge medical data trap: 
+#CMS duplicates every single drug record—once for the blank modifier row (' '), and a second time for the 'TOTAL' modifier row. 
+#If you don't filter this out, you will double-count your entire dataset! 
+#To showcase advanced data validity auditing, we should drop the 'TOTAL' rows and only analyze the individual modifier rows.
