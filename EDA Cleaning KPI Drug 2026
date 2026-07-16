@@ -88,4 +88,32 @@ Row 9: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0122', 'TOTAL', 61630, 71141.22, 5573
 #If you don't filter this out, you will double-count your entire dataset! 
 #To showcase advanced data validity auditing, we should drop the 'TOTAL' rows and only analyze the individual modifier rows.
 
+import csv
+import pandas as pd
 
+# 1. Load the file using the exact header location found (index 3)
+df = pd.read_excel(file_path, header=3)
+
+# 2. FIX: Explicitly rename columns to ensure 100% database compatibility
+df.columns = [
+    "description",
+    "hcpcs",
+    "modifier",
+    "allowed_services",
+    "allowed_charges",
+    "payment",
+]
+print("✅ Column names verified:", list(df.columns))
+
+✅ Column names verified: ['description', 'hcpcs', 'modifier', 'allowed_services', 'allowed_charges', 'payment']
+# 3. ADVANCED AUDITING: Remove the duplicate 'TOTAL' rows to prevent double-counting
+# Safely convert to string, remove extra spaces, and filter out 'TOTAL'
+df["modifier"] = df["modifier"].astype(str).str.strip().str.upper()
+df_no_totals = df[df["modifier"] != "TOTAL"].copy()
+# 4. ENFORCE NUMERIC TYPES: Convert text metrics to floats safely
+for col in ["allowed_services", "allowed_charges", "payment"]:
+    df_no_totals[col] = pd.to_numeric(df_no_totals[col], errors="coerce")
+
+# 4. ENFORCE NUMERIC TYPES: Convert text metrics to floats safely
+for col in ["allowed_services", "allowed_charges", "payment"]:
+    df_no_totals[col] = pd.to_numeric(df_no_totals[col], errors="coerce")
