@@ -15,6 +15,8 @@ The data pipeline takes unstructured enterprise spreadsheets, fixes severe data 
 - **Core Competencies Showcase:** Data Quality Auditing, Schema Normalization, Financial Data Analysis
 
 ## 🛢️ Data Engineering Pipeline & Integrity Auditing
+**Link for EDA & Data Cleaning:** https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/EDA%20Cleaning%20KPI%20Drug%202026
+
 Raw healthcare administration files frequently have complex layout barriers that break downstream analytical models. This pipeline implements strict institutional validity controls to clean and reduce **1,420 raw records down to 535 highly audited data rows**:
 
 1. **Dynamic Schema Alignment:** Bypassed unstructured text disclaimer cells and layout noise by mapping multi-row text metadata headers to expose true table arrays on row index 3.
