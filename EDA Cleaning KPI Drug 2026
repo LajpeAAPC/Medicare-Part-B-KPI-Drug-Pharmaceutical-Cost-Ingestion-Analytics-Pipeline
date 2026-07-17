@@ -221,7 +221,7 @@ current_folder = os.getcwd()
 file_name = "clean_j_code_drugs_2024.csv"
 full_path = os.path.join(current_folder, file_name)
 
-# 2. Export your cleaned dataframe to that exact spot
+# 2. Export the cleaned dataframe to that exact spot
 df_cleaned.to_csv(full_path, index=False)
 
 print("--- FILE SAVED SUCCESSFULLY ---")
