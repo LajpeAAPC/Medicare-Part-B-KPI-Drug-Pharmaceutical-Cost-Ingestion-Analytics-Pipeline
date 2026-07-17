@@ -11,7 +11,7 @@ Out of hundreds of specialized medications, a single formulation—**Drug Code J
 **SQL File & SQL Queries:**
 https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/SQL%20queries.sql
 
-**PYTHON EDA & Data Cleaning:** https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/EDA%20Cleaning%20KPI%20Drug%202026
+**PYTHON EDA & Data Cleaning:** https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/PYTHON%20EDA%20Cleaning%20KPI%20Drug%202026
 
 - **Data Pipeline & Engineering:** Python (`pandas`, `numpy`, `openpyxl`, `sqlite3`)
 - **Database Architecture & Querying:** SQL / SQLite (Advanced Aggregations, Conditional Logic, Type Casting)
