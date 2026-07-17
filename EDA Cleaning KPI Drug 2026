@@ -149,25 +149,25 @@ max        9.591416e+08     2.280345e+09  1.766942e+09
 # min numbers are completely positive, meaning every single negative number, zero, and blank record 
 #Has been successfully audited and filtered out.
 
-#More importantly, your rows dropped from 1,420 down to 535. 
-#This proves you successfully removed all the duplicate "TOTAL" rows. Your aggregate sums are now completely safe from inflation.
+#More importantly, the rows dropped from 1,420 down to 535. 
+#This proves successful removal of all the duplicate "TOTAL" rows. Aggregate sums are now completely safe from inflation.
 
-#Because your data contains complex pricing numbers up to 2.28 billion dollars (written in scientific notation like 2.280345e+09), 
-#we need to adjust your SQL scripts to use BIGINT and formatted decimal transformations. 
-#If you use standard integer limits, your database will crash or clip the numbers.
+#Because this data contains complex pricing numbers up to 2.28 billion dollars (written in scientific notation like 2.280345e+09), 
+#We need to adjust the SQL scripts to use BIGINT and formatted decimal transformations. 
+#If standard integer limits are used, the database will crash or clip the numbers.
 
-#Production SQL Scripts (Adjusted)Save these queries into a .sql file in your GitHub repository. 
-#They are written to handle your massive dollar amounts flawlessly.
+#Production SQL Scripts (Adjusted). Save these queries into a .sql file in a GitHub repository. 
+#They are written to handle massive dollar amounts.
 # Top 10 Most Expensive Non-Chemotherapy Drugs by Total Payout
-#This identifies the most critical financial drivers in your J-code pharmaceutical dataset.
+#This identifies the most critical financial drivers in the Drug J-code pharmaceutical dataset.
 
 import sqlite3
 
-# 1. Reconnect to your SQLite database
+# 1. Reconnect to the SQLite database
 db_path = "medicare_part_b.db"
 conn = sqlite3.connect(db_path)
 
-# 2. Overwrite the database table with your 100% correct, audited rows
+# 2. Overwrite the database table with the 100% correct, audited rows
 df_cleaned.to_sql("j_code_drugs_2024", conn, if_exists="replace", index=False)
 conn.close()
 
@@ -178,10 +178,10 @@ print("✅ Database refreshed! 'j_code_drugs_2024' table now contains your clean
 import sqlite3
 import pandas as pd
 
-# 1. Connect to your database file
+# 1. Connect to the database file
 conn = sqlite3.connect("medicare_part_b.db")
 
-# 2. Define your SQL query as a clean Python string
+# 2. Define the SQL query as a clean Python string
 query = """
 SELECT 
     hcpcs,
@@ -216,7 +216,7 @@ top_10_df
 
 import os
 
-# 1. Get the absolute path of where your notebook is running
+# 1. Get the absolute path of where the notebook is running
 current_folder = os.getcwd()
 file_name = "clean_j_code_drugs_2024.csv"
 full_path = os.path.join(current_folder, file_name)
