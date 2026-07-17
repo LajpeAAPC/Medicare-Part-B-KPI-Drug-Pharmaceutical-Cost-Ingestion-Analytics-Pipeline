@@ -1,5 +1,5 @@
 # Medicare KPI Drug Cost & Pharmaceutical Analytics Pipeline
-<img width="996" height="470" alt="Image" src="https://github.com/user-attachments/assets/0ddd997e-aa2e-4d2b-b11d-e0f39cb462c6" />
+<img width="1005" height="483" alt="Image" src="https://github.com/user-attachments/assets/0b938c36-cf0c-4665-9f4b-ad49476249a3" />
 
 ## 📌 Project Overview
 This **KPI Dashboard** project reveals **Drug Code J0178** drives a staggering **$1.76 Billion** in direct federal Medicare payouts, commanding the **highest financial footprint in the entire dataset!** It uses an end-to-end data engineering and analytics pipeline using CMS Medicare Part B 2024 National Summary data and focuses specifically on **Non-Chemotherapy Drugs (J-Codes J0000 - J8499)**. 
@@ -39,10 +39,11 @@ The audited dataset was exported as an optimized flat file and piped directly in
 - **Tableau Interactive Executive Dashboard:**
   https://public.tableau.com/authoring/MedicarePartBKPIDrugSpendLiability/Dashboard1#1
   
-<img width="996" height="470" alt="Image" src="https://github.com/user-attachments/assets/0ddd997e-aa2e-4d2b-b11d-e0f39cb462c6" />
+<img width="1005" height="483" alt="Image" src="https://github.com/user-attachments/assets/0b938c36-cf0c-4665-9f4b-ad49476249a3" />
   
 - **Core Business Metrics Tracked (3 BAN Layout):**
   - **Total Approved Charges:** Captures the macro-level economic footprint approved for specialized drug distribution.
   - **Total Medicare Payouts:** Isolates actual paid-out government capital liability to map public insurance dependencies.
   - **Medicare Coverage Ratio:** An advanced, engineered custom business ratio (`SUM([Payment]) / SUM([Allowed Charges])`) designed to show exactly what percentage of costs the government covers versus what financial cost is covered by the patient.
 
+Data Source: https://www.cms.gov/data-research/statistics-trends-and-reports/part-b-national-summary-data-file
