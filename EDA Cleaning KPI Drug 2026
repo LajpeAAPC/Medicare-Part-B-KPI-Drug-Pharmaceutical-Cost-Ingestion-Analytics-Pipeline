@@ -111,9 +111,6 @@ print("✅ Column names verified:", list(df.columns))
 # Safely convert to string, remove extra spaces, and filter out 'TOTAL'
 df["modifier"] = df["modifier"].astype(str).str.strip().str.upper()
 df_no_totals = df[df["modifier"] != "TOTAL"].copy()
-# 4. ENFORCE NUMERIC TYPES: Convert text metrics to floats safely
-for col in ["allowed_services", "allowed_charges", "payment"]:
-    df_no_totals[col] = pd.to_numeric(df_no_totals[col], errors="coerce")
 
 # 4. ENFORCE NUMERIC TYPES: Convert text metrics to floats safely
 for col in ["allowed_services", "allowed_charges", "payment"]:
@@ -126,7 +123,7 @@ df_cleaned = df_no_totals[
     & (df_no_totals["payment"] > 0)
 ].dropna(subset=["hcpcs"])
 
-# 6. Print validation summary for your portfolio documentation
+# 6. Print validation summary for documentation
 print(f"\nTotal raw rows in spreadsheet: {len(df)}")
 print(f"Cleaned data rows kept: {len(df_cleaned)}")
 print(f"Total summary rows/anomalies removed: {len(df) - len(df_cleaned)}")
@@ -150,7 +147,7 @@ min        1.200000e+01     1.180000e+00  9.600000e-01
 max        9.591416e+08     2.280345e+09  1.766942e+09
 
 # min numbers are completely positive, meaning every single negative number, zero, and blank record 
-#has been successfully audited and filtered out.
+#Has been successfully audited and filtered out.
 
 #More importantly, your rows dropped from 1,420 down to 535. 
 #This proves you successfully removed all the duplicate "TOTAL" rows. Your aggregate sums are now completely safe from inflation.
