@@ -57,14 +57,14 @@ unique	5	710	3	527	577	576
 top	DRUGS OTHER THAN CHEMOTHERAPY	J2150		16	0	0
 freq	1418	2	709	4	262	266
 
-#Your df.describe() output shows that your Excel file actually contains metadata and blank rows at the very top, 
-#which caused Pandas to read the data incorrectly.
-#Because the first row of your file contains the text cpt_only_copyright_2024_american_medical_association_all_rights_reserved 
-#instead of your real column names, Pandas named your columns unnamed_1, unnamed_2, etc., and 
-#treated your real numerical data as text.
-#To fix this step alone, you need to use skiprows to clear the garbage rows at the top so your numerical filters actually work.
+#df.describe() output shows that the Excel file actually contains metadata and blank rows at the very top, 
+#Which caused Pandas to read the data incorrectly.
+#Because the first row of the file contains the text cpt_only_copyright_2024_american_medical_association_all_rights_reserved 
+#Instead of real column names, Pandas named the columns unnamed_1, unnamed_2, etc., and 
+#Treated the real numerical data as text.
+#To fix this step, use skiprows to clear the garbage rows at the top so the numerical filters function normally.
 
-#Run this quick snippet to see exactly which line your real column headers (DESCRIPTION, HCPCS, etc.) are on:
+#Run this quick snippet to see exactly which line the real column headers (DESCRIPTION, HCPCS, etc.) are on:
 for i, row in enumerate(pd.read_excel(file_path, nrows=10).values):
     print(f"Row {i}: {list(row)}")
 
@@ -79,14 +79,14 @@ Row 7: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0121', 'TOTAL', 858861, 3245162.67, 2
 Row 8: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0122', ' ', 61630, 71141.22, 55734.07]
 Row 9: ['DRUGS OTHER THAN CHEMOTHERAPY', 'J0122', 'TOTAL', 61630, 71141.22, 55734.07]
 
-#Look at Row 2: the file explicitly tells you that the true headers are on line 5 of the Excel sheet, 
-#which corresponds to Row 3 (index 3) in Python's zero-indexed tracking.Because your 
-#true headers sit squarely at index 3, you must use header=3 when reading the file.
+#Look at Row 2: the file explicitly says that the true headers are on line 5 of the Excel sheet, 
+#Which corresponds to Row 3 (index 3) in Python's zero-indexed tracking.  
+#Since the true headers sit squarely at index 3, use header=3 when reading the file.
 
-#looking closely at your data rows, we can spot a huge medical data trap: 
+#Looking closely at the data rows, we can spot a huge medical data trap: 
 #CMS duplicates every single drug record—once for the blank modifier row (' '), and a second time for the 'TOTAL' modifier row. 
-#If you don't filter this out, you will double-count your entire dataset! 
-#To showcase advanced data validity auditing, we should drop the 'TOTAL' rows and only analyze the individual modifier rows.
+#If not filtered out, it will double-count the entire dataset! 
+#For advanced data validity auditing, drop the 'TOTAL' rows and only analyze the individual modifier rows.
 
 import csv
 import pandas as pd
@@ -106,6 +106,7 @@ df.columns = [
 print("✅ Column names verified:", list(df.columns))
 
 ✅ Column names verified: ['description', 'hcpcs', 'modifier', 'allowed_services', 'allowed_charges', 'payment']
+
 # 3. ADVANCED AUDITING: Remove the duplicate 'TOTAL' rows to prevent double-counting
 # Safely convert to string, remove extra spaces, and filter out 'TOTAL'
 df["modifier"] = df["modifier"].astype(str).str.strip().str.upper()
