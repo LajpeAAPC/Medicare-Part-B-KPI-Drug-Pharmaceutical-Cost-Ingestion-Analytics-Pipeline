@@ -8,10 +8,10 @@ This **KPI Dashboard** project reveals **Drug Code J0178** drives a staggering *
 Out of hundreds of specialized medications, a single formulation—**Drug Code J0178**—drives **$1.76 Billion** in direct federal Medicare payouts, the **highest in the entire dataset. Drug Code J0178 refers to “aflibercept (brand name Eylea).** A drug that treats diabetic eye conditions.
 
 ## 🛠️ Tech Stack & Analytical Skills
-**Link for SQL File & SQL Queries:**
+**SQL File & SQL Queries:**
 https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/SQL%20queries.sql
 
-**Link for PYTHON EDA & Data Cleaning:** https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/EDA%20Cleaning%20KPI%20Drug%202026
+**PYTHON EDA & Data Cleaning:** https://github.com/LajpeAAPC/Medicare-Part-B-KPI-Drug-Pharmaceutical-Cost-Ingestion-Analytics-Pipeline/blob/main/EDA%20Cleaning%20KPI%20Drug%202026
 
 - **Data Pipeline & Engineering:** Python (`pandas`, `numpy`, `openpyxl`, `sqlite3`)
 - **Database Architecture & Querying:** SQL / SQLite (Advanced Aggregations, Conditional Logic, Type Casting)
