@@ -36,7 +36,7 @@ To model enterprise-scale operations, a local relational database layer was cons
 ## 📊 Business Intelligence & Executive Deliverables
 The audited dataset was exported as an optimized flat file and piped directly into an interactive executive interface built on Tableau Public.
 
-- **Interactive Executive Dashboard:**
+- **Tableau Interactive Executive Dashboard:**
   https://public.tableau.com/authoring/MedicarePartBKPIDrugSpendLiability/Dashboard1#1
   
 <img width="996" height="470" alt="Image" src="https://github.com/user-attachments/assets/0ddd997e-aa2e-4d2b-b11d-e0f39cb462c6" />
