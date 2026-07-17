@@ -4,7 +4,7 @@ import os
 import sqlite3
 import pandas as pd
 
-# 1. Path to your specific drug file
+# 1. Path to specific drug file
 file_path = r"C:\Users\Lajpe\Downloads\extracted_medicare\National\Y2024_18) Drugs other than Chemotherapy (J0000 - J8499).xlsx"
 
 print(f"Reading file: {os.path.basename(file_path)}")
@@ -26,7 +26,7 @@ conn = sqlite3.connect(db_path)
 df.to_sql("j_code_drugs_2024", conn, if_exists="replace", index=False)
 conn.close()
 
-# 5. Export an optimized CSV flat file for your Tableau Dashboard
+# 5. Export an optimized CSV flat file for Tableau Dashboard
 df.to_csv("clean_j_code_drugs_2024.csv", index=False)
 
 print(f"\n✅ Success! Database and Tableau CSV extracts created using columns:")
@@ -44,11 +44,11 @@ C:\Users\Lajpe\anaconda3\Lib\site-packages\openpyxl\styles\stylesheet.py:237: Us
 #By stripping out any raw formatting artifacts like currency signs or commas before running your analytics.
 
 #Isolate Unique Medications: Run df['hcpcs'].nunique() 
-#to state exactly how many unique drug codes are evaluated in this specific J-code dataset. 
+#To state exactly how many unique drug codes are evaluated in this specific J-code dataset. 
 
 #Filter Outliers: Use df.describe() 
-#to find and remove row items where allowed_services or allowed_charges equal zero or are negative numbers, 
-#understanding data validity auditing.
+#To find and remove row items where allowed_services or allowed_charges equal zero or are negative numbers, 
+#Understanding data validity auditing.
 df.describe()
 
 	cpt_only_copyright_2024_american_medical_association_all_rights_reserved	unnamed_1	unnamed_2	unnamed_3	unnamed_4	unnamed_5
